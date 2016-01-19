@@ -4,6 +4,7 @@ var app = express();
 var morgan = require('morgan');
 var chalk = require('chalk');
 var routes = require('./routes/');
+var socketio = require('socket.io');
 
 
 var swig = require('swig');
@@ -20,4 +21,7 @@ app.use(express.static('public'));
 
 app.use('/', routes);
 
-app.listen(1337, function(){console.log("Listening on port: 1337");});
+var server = app.listen(1337, function(){
+	console.log("Listening on port: 1337");});
+
+var io = socketio.listen(server);
