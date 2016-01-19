@@ -12,7 +12,7 @@ function list () {
 };
 
 function find (properties) {
-  return _.find(data, properties);
+  return _.filter(data, properties);
 };
 
 module.exports = { add: add, list: list, find: find };
@@ -34,4 +34,4 @@ var getFakeTweet = function() {
 
 for(var i=0; i<10; i++) {
   module.exports.add( getFakeName(), getFakeTweet() );
-}
+};
