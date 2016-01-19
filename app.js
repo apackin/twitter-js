@@ -13,10 +13,7 @@ app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname+'/views');
 
-app.use(function(req, res, next){
-	console.log(chalk.magenta(req.method), req.url, chalk.green(res.statusCode));
-	next();
-});
+app.use(morgan('tiny'))
 
 app.use('/', routes);
 
