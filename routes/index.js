@@ -6,9 +6,11 @@ var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 //---Routes---
+module.exports = function (io) {
 router.post("/tweets", urlencodedParser, function(req, res, next){
 	var body = req.body;
 	tweetBank.add(body.name, body.text);
+	io.sockets.emit('new_tweet', tweetBank.find({text:body.text}));
 	res.redirect('/');
 });
 
@@ -29,4 +31,5 @@ router.get('/', function (req, res) {
   res.render( 'index', { title: 'Twitter.js', tweets: tweets, showForm: true});
 });
 
-module.exports = router;
+  return router;
+};
