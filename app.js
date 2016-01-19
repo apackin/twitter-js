@@ -5,6 +5,7 @@ var morgan = require('morgan');
 var chalk = require('chalk');
 var routes = require('./routes/');
 
+
 var swig = require('swig');
 swig.setDefaults({ cache: false });
 
@@ -14,8 +15,8 @@ app.set('view engine', 'html');
 app.set('views', __dirname+'/views');
 
 app.use(morgan('tiny'));
-
 app.use(express.static('public'));
+
 
 app.use('/', routes);
 
